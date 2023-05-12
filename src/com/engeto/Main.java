@@ -2,9 +2,7 @@ package com.engeto;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.Temporal;
 import java.util.*;
-import java.util.concurrent.Callable;
 
 
 public class Main {
