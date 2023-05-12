@@ -3,22 +3,31 @@ package com.engeto;
 import java.io.*;
 import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.List;
-import java.util.Scanner;
 
 public class PlantList {
     public static void main(String[] args) {
         List<Plant> plants = new ArrayList<>();
+        for (Plant plant: plants
+             ) {
+            System.out.println(plant.getName()+" "+plant.getNotes()+" "+plant.getPlanted()+" "+plant.getWatering()+" "+plant.getFrequencyOfWatering());
+
+        }
     }
+
     public List<Plant> getPlants() {
         // Vrátíme kopii seznamu.
         // Pokud následně někdo v kopii provede změny, neovlivní tím
         //  náš seznam.
         return new ArrayList<>(getPlants());
     }
-    static final List<Plant> plantList = new LinkedList<>();
+
+    public ArrayList<Plant> getPlantList() {
+        return plantList;
+    }
+
+    private ArrayList<Plant> plantList = new ArrayList<>();
 
     public void addPlantList(Plant plant) {
         plantList.add(plant);
@@ -28,11 +37,13 @@ public class PlantList {
         plantList.remove(index);
     }
    
-    public void  getPlantList(Plant index){plantList.indexOf(index);}
+    public void  getPlantListIndex(Plant index){plantList.indexOf(index);}
 
     public final int numberofPlantList(){return plantList.size();}
 
-    public static PlantList importFromFile(String getFilename, String getDelimiter) throws PlantException{
+    public void getPlantlist_plant(int index){plantList.get(index);}
+
+    public void importFromFile(String getFilename, String getDelimiter) throws PlantException{
         String nextLine = "";
         String[] items = new String [1];
         String name;
@@ -60,7 +71,8 @@ public class PlantList {
                 planted = LocalDate.parse(items[2]);
                 watering = LocalDate.parse(items[3]);
                 frequencyOfWatering = Integer.parseInt(items[4]);
-                result.addPlantList(new Plant(name,notes,planted,watering,frequencyOfWatering));
+                //result.addPlantList(new Plant(name,notes,planted,watering,frequencyOfWatering));
+                this.addPlantList(new Plant(name,notes,planted,watering,frequencyOfWatering));
             }
         } catch (NumberFormatException e){
             throw new PlantException(
@@ -74,7 +86,7 @@ public class PlantList {
             throw new PlantException(
                     "Subor"+getFilename+"nebol najdeny"+e.getLocalizedMessage());
         }
-        return result;
+        //return result;
     }
 
     public void exportToFile(String outFilename,String getDelimiter){

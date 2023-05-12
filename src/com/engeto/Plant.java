@@ -1,11 +1,9 @@
 package com.engeto;
-
-
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 public class Plant implements Comparable<Plant> {
@@ -32,8 +30,7 @@ public class Plant implements Comparable<Plant> {
         this.frequencyOfWatering = frequencyOfWatering;
     }
 
-
-    @Override
+   @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -117,4 +114,5 @@ public class Plant implements Comparable<Plant> {
                 ", frequencyOfWatering=" + frequencyOfWatering +
                 '}';
     }
+
 }
